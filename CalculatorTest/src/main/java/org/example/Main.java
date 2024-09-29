@@ -8,19 +8,17 @@ public class Main {
         System.out.println("Enter arithmetic expression (for example, 1 + 1):");
 
         String[] arguments = scanner.nextLine().split(" ");
-        double first = Double.parseDouble(arguments[0]);
-        double second = Double.parseDouble(arguments[2]);
         String operation = arguments[1];
 
-        Data data = new Data(first, second, operation);
         View view = new View(arguments[0], arguments[2]);
         MyCalculator calculator = new MyCalculator();
-        Controller controller = new Controller(data, view, calculator);
+        Presenter presenter = new Presenter(calculator, view);
+
         switch (operation) {
-            case "+" -> controller.onPlusClicked();
-            case "-" -> controller.onMinusClicked();
-            case "*" -> controller.onMultiplyClicked();
-            case "/" -> controller.onDivideClicked();
+            case "+" -> presenter.onPlusClicked();
+            case "-" -> presenter.onMinusClicked();
+            case "*" -> presenter.onMultiplyClicked();
+            case "/" -> presenter.onDivideClicked();
         }
     }
 }
